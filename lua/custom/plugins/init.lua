@@ -8,42 +8,32 @@ return {
     dependencies = {
       'nvim-tree/nvim-web-devicons'
     },
-    config = function()
-      -- disable netrw at the very start of your init.lua (strongly advised)
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
-
-      -- set termguicolors to enable highlight groups
-      vim.opt.termguicolors = true
-
-      -- empty setup using defaults
-      require("nvim-tree").setup()
-
-      -- OR setup with some options
-      require("nvim-tree").setup({
-        sort_by = "case_sensitive",
-        view = {
-          adaptive_size = true,
-          mappings = {
-            list = {
-              { key = "u", action = "dir_up" },
-            },
-          },
-        },
-        renderer = {
-          group_empty = true,
-        },
-        filters = {
-          dotfiles = true,
-        },
-      })
-    end
   },
   {
     's1n7ax/nvim-terminal',
     config = function()
       vim.o.hidden = true
       require('nvim-terminal').setup()
+    end,
+  },
+  {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function()
+      local null_ls = require("null-ls")
+
+      local sources = {
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.astyle,
+      }
+
+      null_ls.setup({ sources = sources })
+    end
+  },
+  {
+    'sainnhe/everforest',
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'everforest'
     end,
   }
 }

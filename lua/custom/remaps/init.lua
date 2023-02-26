@@ -19,3 +19,6 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Nvim_Tree
 vim.keymap.set("n", "<leader>b", vim.cmd.NvimTreeToggle, { desc = 'Toggle NvimTree' })
+
+-- Format
+-- vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format({ timeout_ms = 10000 }) end, { desc = 'Format' })
